@@ -60,14 +60,14 @@ async function send({ fnc, Client, props }) {
                         Files.errSend(fnc, `${props.Path}\\Recibo_`, `${props.Path}\\Recibo_${fnc.matricula}.pdf`)
                         console.error(`> Error in ${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero}`)
                         console.error('Error when sending sendContactVcardList: ', erro.text); //return object error
-                        resolve(error)
+                        resolve(erro)
                     });
             })
             .catch((erro) => {
                 Files.errSend(fnc, `${props.Path}\\Recibo_`, `${props.Path}\\Recibo_${fnc.matricula}.pdf`)
                 console.error(`> Error in ${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero}`)
                 console.error('Error when sending sendFile: ', erro.text); //return object error
-                resolve(error)
+                resolve(erro)
             });
     });
 
