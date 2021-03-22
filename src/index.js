@@ -41,9 +41,8 @@ function option(prompt, answers) {
         },
         "Funcionarios": (answers) => {
 
-            funcionarios.push(require("./lib/disk.json")[0]); //answers.length > 0 ? : answers.forEach(e => funcionarios.push(JSON.parse(e)));
-            funcionarios.push(require("./lib/disk.json")[1]); //answers.length > 0 ? : answers.forEach(e => funcionarios.push(JSON.parse(e)));
-            funcionarios.push(require("./lib/disk.json")[2]); //answers.length > 0 ? : answers.forEach(e => funcionarios.push(JSON.parse(e)));
+            funcionarios = require("./lib/disk.json"); //answers.length > 0 ? : answers.forEach(e => funcionarios.push(JSON.parse(e)));
+           
 
         },
         "Path": (answers) => {
