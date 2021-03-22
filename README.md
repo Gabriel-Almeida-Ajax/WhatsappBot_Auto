@@ -1,4 +1,4 @@
-# Bot Whatsapp Service <development>
+# Bot Whatsapp Service - development -
 ### Olá, este é um projeto simple que engloba meus estudos!
 
 ###### Sou Gabriel tenho 19 anos.
