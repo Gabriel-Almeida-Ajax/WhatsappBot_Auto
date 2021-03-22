@@ -4,3 +4,5 @@ node_modules
 **/disk.json
 **/tokens
 **/package-lock.json
+success.json
+error.json
