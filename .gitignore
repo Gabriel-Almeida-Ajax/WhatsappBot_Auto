@@ -1,6 +1,6 @@
 .autogit
 
 node_modules
-lib/disk.json
-tokens
-package-lock.json
+**/disk.json
+**/tokens
+**/package-lock.json
