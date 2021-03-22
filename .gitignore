@@ -1,0 +1,7 @@
+.autogit
+
+node_modules/*
+
+package-lock.json
+
+tokens/*
