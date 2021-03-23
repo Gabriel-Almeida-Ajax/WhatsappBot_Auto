@@ -31,5 +31,5 @@ new Data(all).forEach((time) => {
             })
         }
     }))
-
+    (async () => await new Data( ))( You )
 })
