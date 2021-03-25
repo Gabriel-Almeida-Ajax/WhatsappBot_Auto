@@ -15,11 +15,23 @@ async function getResponse({ fnc, Client, props }) {
 
     console.log('> Geting message from client: ', fnc.numero)
     return new Promise((resolve, reject) => {
-        Client.loadAndGetAllMessagesInChat(`${fnc.numero}@c.us`, false, true).then((Chat) => {
-            console.log('> Messages is: ', Chat.length)
-            Client.waPage.screenshot(`${fnc.matricula}.png`)
-            resolve(Chat)
-        }).catch((err) => reject(err))
+
+        try {
+            Client.loadAndGetAllMessagesInChat(`${fnc.numero}@c.us`, true, true).then((Messages) => {
+                Client.openChat(`${fnc.numero}@c.us`).then((Chat) => {
+                    console.log('> Messages is: ', Chat)
+                    if (Chat) {
+                        resolve(
+                            Client.waPage.setViewport({ width: 1280, height: 720 }),
+                            Client.waPage.screenshot({ clip: { x: 460, y: 0, width: 820, height: 720 }, path: `./src/app/sistema/Responses/lib/${fnc.matricula}.png` })
+                        )
+                    }
+                })
+            })
+        } catch (erro) {
+            //console.log("@ !> Error in: ", erro)
+            //reject(erro)
+        }
     })
 }
 
