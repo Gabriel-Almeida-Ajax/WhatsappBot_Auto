@@ -5,7 +5,7 @@ async function mensage({ Client, props }) {
     for (const [idx, fnc] of props.state.funcionarios.entries()) {
         console.log(" ! > Opening chat in: ", new Date().toLocaleString("PT-br", { timeStyle: "medium", hour12: false }))
         const todo = await getResponse({ fnc, Client, props });
-        console.log(`${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero} ${idx + 1} de ${props.state.Cpdf.length}`)
+        console.log(`${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero} ${idx + 1} de ${props.state.funcionarios.length}`)
     }
     console.log('Finished process!');
     process.exit()
@@ -13,11 +13,13 @@ async function mensage({ Client, props }) {
 
 async function getResponse({ fnc, Client, props }) {
 
-    Client.getMessageById(`${fnc.numero}@c.us`).then((Message) => {
-        if(Message.isMedia !== true && Message.isMMS !== true) {
-            console.log(Message.body.split(" "))
-        }
-
+    console.log('> Geting message from client: ', fnc.numero)
+    return new Promise((resolve, reject) => {
+        Client.loadAndGetAllMessagesInChat(`${fnc.numero}@c.us`, false, true).then((Chat) => {
+            console.log('> Messages is: ', Chat.length)
+            Client.waPage.screenshot(`${fnc.matricula}.png`)
+            resolve(Chat)
+        }).catch((err) => reject(err))
     })
 }
 

@@ -12,6 +12,7 @@ const questions = [
         choices: [
             { title: 'Aviso', value: 'Aviso' },
             { title: 'Recibo', value: 'Recibo' },
+            { title: 'Responses', value: 'Responses' },
         ],
 
     },
@@ -49,25 +50,27 @@ function option(prompt, answers) {
             let documents = [];
             let Cpdf = [];
             let Spdf = [];
+            if(answers){
 
-            fs.readdirSync(answers).forEach(file => {
-                console.log(file)
-                let docName = file.match(RegExp("(\\d{6})", "g"))[0];
-                let busca = documents.indexOf(docName, 0)
-                if (busca == (-1)) {
-                    documents.push(file.match(RegExp("(\\d{6})", "g"))[0])
-                }
-
-            });
-
-            funcionarios.forEach(funcionario => {
-                if (documents.find(element => element == funcionario.matricula)) {
-                    Cpdf.push(funcionario)
-                } else {
-                    Spdf.push(funcionario)
-                    console.log(`> Funcionario sem pdf: ${funcionario.matricula}`);
-                }
-            })
+                fs.readdirSync(answers).forEach(file => {
+                    console.log(file)
+                    let docName = file.match(RegExp("(\\d{6})", "g"))[0];
+                    let busca = documents.indexOf(docName, 0)
+                    if (busca == (-1)) {
+                        documents.push(file.match(RegExp("(\\d{6})", "g"))[0])
+                    }
+                    
+                });
+                
+                funcionarios.forEach(funcionario => {
+                    if (documents.find(element => element == funcionario.matricula)) {
+                        Cpdf.push(funcionario)
+                    } else {
+                        Spdf.push(funcionario)
+                        console.log(`> Funcionario sem pdf: ${funcionario.matricula}`);
+                    }
+                })
+            }
 
             state = { documents: documents, Cpdf: Cpdf, Spdf: Spdf, funcionarios: funcionarios }
         },
