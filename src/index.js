@@ -19,10 +19,10 @@ const questions = [
         type: 'confirm',
         name: 'Funcionarios',
         message: 'Updated for whom, in disk.json?',
-        
+
     },
     {
-        type: prev => prev ? 'text': process.exit(),
+        type: prev => prev ? 'text' : process.exit(),
         name: 'Path',
         message: `Where are the files?`
     }
@@ -42,7 +42,7 @@ function option(prompt, answers) {
         "Funcionarios": (answers) => {
 
             funcionarios = require("./lib/disk.json"); //answers.length > 0 ? : answers.forEach(e => funcionarios.push(JSON.parse(e)));
-           
+
 
         },
         "Path": (answers) => {
