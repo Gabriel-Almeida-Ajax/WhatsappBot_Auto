@@ -52,14 +52,14 @@ async function send({ fnc, Client, props }) {
                             .sendMentioned(
                                 `${fnc.numero}@c.us`,
                                 `Olá @${fnc.numero}, \n\nInstuções: Verifique o documento, e confirme dizendo *Estou de acordo com o recibo encaminhado*;\n\nCaso tenha alguma duvida não relacionada a férias: @5511933686169 ou @5511933686169!\n\nTambém pode acessar seus documentos em: https://meusdocumentos.lello.com.br/\n\nAtenciosamente, Gabriel Santos.`,
-                                [`${fnc.numero}`, '5511933686169', '5511933686169']
+                                [`${fnc.numero}`, '55119xxxxxxxx', '5511xxxxxxx']
                             );
 
                         // Send a list of contact cards
                         Client
                             .sendContactVcardList(`${fnc.numero}@c.us`, [
-                                '5511974611630@c.us',
-                                '5511933686169@c.us'
+                                '55119xxxxxxxx@c.us',
+                                '55119xxxxxxxx@c.us'
                             ])
                             .then((result) => {
 
