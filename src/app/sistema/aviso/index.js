@@ -17,8 +17,8 @@ async function mensage({ Client, props }) {
 async function send({ fnc, Client, props }) {
     const Files = require('../../../services/successSend/index.js');
 
-
     console.log("> Joined in execution with: ", fnc)
+
     return new Promise((resolve, reject) => {
 
         // Send file (venom will take care of mime types, just need the path)
