@@ -31,50 +31,6 @@ async function send({ fnc, Client, props }) {
                 `Aviso_${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero}`,
                 'Instuções: Verifique o documento, e caso não haja objeção, confirme de acordo.\n\n*'
             )
-            .catch(()=>{
-                console.log("> Sending vacation warning with erro in send on warning...");
-                Client
-                    .sendFile(
-                        `${fnc.numero}@c.us`,
-                        `${props.Path}\\Recibo_${fnc.matricula}.pdf`, /**************************************************************************************************** */
-                        `Recibo_${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero}`,
-                        'Instuções: Verifique o documento, e caso não haja objeção, confirme de acordo.\n\n*'
-                    ).then((result) => {
-                        console.log("> Sending vacation receipt...")
-
-                        // Controll of documents
-                        Files.successSend(fnc, `${props.Path}\\Aviso_`, `${props.Path}\\Aviso_${fnc.matricula}.pdf`)
-                        Files.successSend(fnc, `${props.Path}\\Recibo_`, `${props.Path}\\Recibo_${fnc.matricula}.pdf`)
-                        console.log("> Success when sending warning and values...")
-
-                        // Send @tagged message
-                        Client
-                            .sendMentioned(
-                                `${fnc.numero}@c.us`,
-                                `Olá @${fnc.numero}, \n\nInstruções: Verifique o documento, e confirme dizendo *Estou de acordo com o recibo encaminhado*;\n\nTambém pode acessar seus documentos em: https://meusdocumentos.lello.com.br/\n\nAtenciosamente, Equipe DP/Férias.`,
-                                [`${fnc.numero}`]
-                            )
-                            .then((result) => {
-
-                                console.log("> Finished typing for: " + fnc.nome)
-                                resolve(fnc)
-                            })
-                            .catch((erro) => {
-                                Files.errSend(fnc, `${props.Path}\\Aviso_`, `${props.Path}\\Aviso_${fnc.matricula}.pdf`)
-                                Files.errSend(fnc, `${props.Path}\\Recibo_`, `${props.Path}\\Recibo_${fnc.matricula}.pdf`)
-                                console.error(`> Error in ${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero}`)
-                                console.error('Error when sending mentioned message on col: ', erro); //return object error
-                                resolve(erro)
-                            });
-                    })
-                    .catch((erro) => {
-                        Files.errSend(fnc, `${props.Path}\\Aviso_`, `${props.Path}\\Aviso_${fnc.matricula}.pdf`)
-                        Files.errSend(fnc, `${props.Path}\\Recibo_`, `${props.Path}\\Recibo_${fnc.matricula}.pdf`)
-                        console.error(`> Error in ${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero}`)
-                        console.error('Error when sending sendFile: ', erro); //return object error
-                        resolve(erro)
-                    });
-            })
             .then((result) => {
                 console.log("> Sending vacation warning...")
                 Client
