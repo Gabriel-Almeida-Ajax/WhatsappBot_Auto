@@ -1,12 +1,15 @@
 
 async function mensage({ Client, props }) {
-    //console.log("Aviso", props)
+    console.log("Aviso", props.state.funcionarios)
 
 
-    for (const [idx, fnc] of props.state.Cpdf.entries()) {
-        console.log(" ! > Sending in: ", new Date().toLocaleString("PT-br", { timeStyle: "medium", hour12: false }))
-        const todo = await send({ fnc, Client, props });
-        console.log(`${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero} ${idx + 1} de ${props.state.Cpdf.length}`)
+    for (const [idx, fnc] of props.state.funcionarios.entries()) {
+        if(idx%2 == 0) {
+            console.log(" ! > Sending in: ", new Date().toLocaleString("PT-br", { timeStyle: "medium", hour12: false }))
+            const todo = await send({ fnc, Client, props });
+            console.log(`${fnc.referencia} - ${fnc.matricula} - ${fnc.nome} - ${fnc.numero} ${idx + 1} de ${props.state.funcionarios.length}`)
+        }
+    
     }
     console.log('Finished process!');
     process.exit()

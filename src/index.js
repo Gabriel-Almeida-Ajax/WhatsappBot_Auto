@@ -50,6 +50,7 @@ function option(prompt, answers) {
             let documents = [];
             let Cpdf = [];
             let Spdf = [];
+
             if(answers){
 
                 fs.readdirSync(answers).forEach(file => {
